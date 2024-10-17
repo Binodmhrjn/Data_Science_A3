@@ -8,19 +8,15 @@ merged_data_cleaned = pd.read_csv('./cleaned_data.csv')
 # Step 1: Descriptive Statistics
 print(merged_data_cleaned[['Total_Screen_Time', 'Optm', 'Relx', 'Usef']].describe())
 
-
-# Step 2: Histogram for Total Screen Time
-plt.hist(merged_data_cleaned['Total_Screen_Time'], bins=20, color='blue', edgecolor='black')
-plt.title('Distribution of Total Screen Time')
+# Step 2: Scatter Plot
+plt.scatter(merged_data_cleaned['Total_Screen_Time'], merged_data_cleaned['Optm'])
+plt.title('Total Screen Time vs Optimism')
 plt.xlabel('Total Screen Time (hours)')
-plt.ylabel('Frequency')
+plt.ylabel('Optimism')
 plt.show()
 
-
-
-# Step 3: Histogram for Optimism (Optm)
-plt.hist(merged_data_cleaned['Optm'], bins=20, color='green', edgecolor='black')
-plt.title('Distribution of Optimism Scores')
-plt.xlabel('Optimism Score')
-plt.ylabel('Frequency')
+# Step 3 Correlation Heatmap
+sns.heatmap(merged_data_cleaned[['Total_Screen_Time', 'Optm', 'Relx', 'Usef']].corr(), annot=True, cmap='coolwarm')
+plt.title('Correlation between Screen Time and Well-being Metrics')
 plt.show()
+
